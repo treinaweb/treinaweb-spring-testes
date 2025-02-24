@@ -1,6 +1,5 @@
 package br.com.treinaweb.twjobs.core.services.jwt;
 
-import java.time.Clock;
 import java.time.Instant;
 import java.util.Date;
 
@@ -17,13 +16,10 @@ import lombok.RequiredArgsConstructor;
 public class JjwtJwtService implements JwtService {
 
     private final JwtConfigProperties jwtConfigProperties;
-    
-    // Used for testing purposes
-    private Clock clock;
 
     @Override
     public String generateToken(String sub) {
-        var now = (clock == null) ? Instant.now() : Instant.now(clock);
+        var now = Instant.now();
         var expiration = now.plus(jwtConfigProperties.getExpiration());
         var key = Keys.hmacShaKeyFor(jwtConfigProperties.getSecret().getBytes());
         return Jwts.builder()
@@ -47,10 +43,6 @@ public class JjwtJwtService implements JwtService {
         } catch (JwtException e) {
             throw new JwtServiceException(e.getLocalizedMessage());
         }
-    }
-
-    public void setClock(Clock clock) {
-        this.clock = clock;
     }
     
 }
