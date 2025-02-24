@@ -1,0 +1,5 @@
+GET {{baseURL}}/skills
+
+###
+
+GET {{baseURL}}/skills/1

@@ -1,0 +1,14 @@
+POST {{baseURL}}/companies
+Content-Type: application/json
+
+{
+    "name": "TreinaWeb",
+    "website": "https://www.treinaweb.com.br",
+    "description": "A TreinaWeb é uma empresa especializada em cursos de tecnologia.",
+    "email": "contato@treinaweb.com.br",
+    "password": "senha@123"
+}
+
+###
+
+GET {{baseURL}}/companies/d397966b-5ce8-4c60-bd04-0277815a3ca8

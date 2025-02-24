@@ -1,0 +1,42 @@
+# @name login
+POST {{baseURL}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "contato@treinaweb.com.br",
+    "password": "senha@123"
+}
+
+###
+
+GET {{baseURL}}/jobs
+
+###
+
+POST {{baseURL}}/jobs
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "name": "Desenvolvedor Java Júnior",
+    "description": "Vaga para desenvolvedor Java Júnior",
+    "location": "São Paulo - SP",
+    "type": "FULL_TIME",
+    "level": "JUNIOR",
+    "salary": 3500,
+    "skills": ["Java", "Spring Boot"]
+}
+
+###
+
+GET {{baseURL}}/jobs/40ae8b7c-be07-402a-870d-0f162981822d
+
+###
+
+POST {{baseURL}}/jobs/40ae8b7c-be07-402a-870d-0f162981822d/applications
+Authorization: Bearer {{login.response.body.$.token}}
+
+###
+
+GET {{baseURL}}/jobs/40ae8b7c-be07-402a-870d-0f162981822d/applications
+Authorization: Bearer {{login.response.body.$.token}}

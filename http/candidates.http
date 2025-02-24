@@ -1,0 +1,15 @@
+POST {{baseURL}}/candidates
+Content-Type: application/json
+
+{
+    "name": "Cleyson Lima",
+    "description": "Desenvolvedor Java Backend",
+    "email": "cleyson@mail.com",
+    "password": "senha@123",
+    "linkedin": "cleysonph",
+    "github": "cleysonph"
+}
+
+### 
+
+GET {{baseURL}}/candidates/b59f1833-4a94-40c7-b822-8f453b2e8e6a
