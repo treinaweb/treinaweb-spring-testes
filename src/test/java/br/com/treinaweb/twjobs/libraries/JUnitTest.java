@@ -11,6 +11,7 @@ public class JUnitTest {
         var expected = "TEST";
         
         assertEquals(expected, actual, "Algo deu errado");
+        assertTrue(actual.startsWith("T"));
         assertNull(null);
         assertTrue(true);
     }
