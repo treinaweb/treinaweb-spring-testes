@@ -49,10 +49,82 @@ public class CompanyRequestTest {
     @MethodSource("moreThan255Chars")
     @Tags({@Tag("validate"), @Tag("fast")})
     @DisplayName("when validate CompanyRequest with invalid name violations should be returned")
-    void whenValidateInValidCompanyRequestName_thenErrors(String name) {
+    void whenValidateInvalidCompanyRequestName_thenErrors(String name) {
         // Arrange
         var companyRequest = CompanyRequestFactory.createTreinaweb();
         companyRequest.setName(name);
+
+        // Act
+        var actual = validator.validate(companyRequest);
+
+        // Assert
+        assertFalse(actual.isEmpty());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   ", "\t", "\n", "ab", "invalidwebsite", "http://www.treinaweb.com.br"})
+    @MethodSource("moreThan255Chars")
+    @Tags({@Tag("validate"), @Tag("fast")})
+    @DisplayName("when validate CompanyRequest with invalid website violations should be returned")
+    void whenValidateInvalidCompanyRequestWebsite_thenErrors(String website) {
+        // Arrange
+        var companyRequest = CompanyRequestFactory.createTreinaweb();
+        companyRequest.setWebsite(website);
+
+        // Act
+        var actual = validator.validate(companyRequest);
+
+        // Assert
+        assertFalse(actual.isEmpty());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   ", "\t", "\n", "ab"})
+    @MethodSource("moreThan255Chars")
+    @Tags({@Tag("validate"), @Tag("fast")})
+    @DisplayName("when validate CompanyRequest with invalid description violations should be returned")
+    void whenValidateInvalidCompanyRequestDescription_thenErrors(String description) {
+        // Arrange
+        var companyRequest = CompanyRequestFactory.createTreinaweb();
+        companyRequest.setDescription(description);
+
+        // Act
+        var actual = validator.validate(companyRequest);
+
+        // Assert
+        assertFalse(actual.isEmpty());
+    }
+    
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   ", "\t", "\n", "ab", "invalidemail"})
+    @MethodSource("moreThan255Chars")
+    @Tags({@Tag("validate"), @Tag("fast")})
+    @DisplayName("when validate CompanyRequest with invalid email violations should be returned")
+    void whenValidateInvalidCompanyRequestEmail_thenErrors(String email) {
+        // Arrange
+        var companyRequest = CompanyRequestFactory.createTreinaweb();
+        companyRequest.setEmail(email);
+
+        // Act
+        var actual = validator.validate(companyRequest);
+
+        // Assert
+        assertFalse(actual.isEmpty());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   ", "\t", "\n", "ab"})
+    @MethodSource("moreThan255Chars")
+    @Tags({@Tag("validate"), @Tag("fast")})
+    @DisplayName("when validate CompanyRequest with invalid password violations should be returned")
+    void whenValidateInvalidCompanyRequestPassword_thenErrors(String password) {
+        // Arrange
+        var companyRequest = CompanyRequestFactory.createTreinaweb();
+        companyRequest.setPassword(password);
 
         // Act
         var actual = validator.validate(companyRequest);
