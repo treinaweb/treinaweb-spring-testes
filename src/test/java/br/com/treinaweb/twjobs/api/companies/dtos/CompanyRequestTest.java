@@ -3,11 +3,17 @@ package br.com.treinaweb.twjobs.api.companies.dtos;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.treinaweb.twjobs.testutils.factories.CompanyRequestFactory;
 import jakarta.validation.Validation;
@@ -37,19 +43,26 @@ public class CompanyRequestTest {
         assertTrue(actual.isEmpty());
     }
 
-    @Test
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {" ", "   ", "\t", "\n", "ab"})
+    @MethodSource("moreThan255Chars")
     @Tags({@Tag("validate"), @Tag("fast")})
     @DisplayName("when validate CompanyRequest with invalid name violations should be returned")
-    void whenValidateInValidCompanyRequestName_thenErrors() {
+    void whenValidateInValidCompanyRequestName_thenErrors(String name) {
         // Arrange
         var companyRequest = CompanyRequestFactory.createTreinaweb();
-        companyRequest.setName(null);
+        companyRequest.setName(name);
 
         // Act
         var actual = validator.validate(companyRequest);
 
         // Assert
         assertFalse(actual.isEmpty());
+    }
+
+    static Stream<String> moreThan255Chars() {
+        return Stream.of("a".repeat(300));
     }
 
 }
