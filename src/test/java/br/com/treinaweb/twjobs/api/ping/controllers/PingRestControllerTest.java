@@ -16,9 +16,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.servlet.MockMvc;
 
+import br.com.treinaweb.twjobs.E2ETestCommon;
+
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class PingRestControllerTest {
+public class PingRestControllerTest extends E2ETestCommon {
 
     @Autowired
     private MockMvc mockMvc;

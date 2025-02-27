@@ -14,6 +14,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
+import br.com.treinaweb.twjobs.E2ETestCommon;
 import br.com.treinaweb.twjobs.testutils.factories.CandidateRequestFactory;
 import br.com.treinaweb.twjobs.testutils.factories.CandidateResponseFactory;
 import io.restassured.RestAssured;
@@ -22,7 +23,7 @@ import io.restassured.http.ContentType;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "/sql/candidates/candidates-insert.sql", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/sql/candidates/candidates-delete.sql", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
-public class CandidateRestControllerTest {
+public class CandidateRestControllerTest extends E2ETestCommon {
 
     @LocalServerPort
     private int port;

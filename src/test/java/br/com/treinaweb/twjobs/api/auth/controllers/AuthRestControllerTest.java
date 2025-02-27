@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.treinaweb.twjobs.E2ETestCommon;
 import br.com.treinaweb.twjobs.api.auth.dtos.LoginRequest;
 import br.com.treinaweb.twjobs.core.services.jwt.JwtService;
 import br.com.treinaweb.twjobs.testutils.factories.CompanyResponseFactory;
@@ -26,7 +27,7 @@ import br.com.treinaweb.twjobs.testutils.factories.CompanyResponseFactory;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "/sql/companies/companies-insert.sql", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/sql/companies/companies-delete.sql", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
-public class AuthRestControllerTest {
+public class AuthRestControllerTest extends E2ETestCommon {
 
     @Autowired
     private MockMvc mockMvc;
